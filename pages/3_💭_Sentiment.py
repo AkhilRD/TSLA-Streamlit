@@ -5,11 +5,11 @@ from datetime import date
 from nltk.tokenize import sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
+import nltk
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 import unicodedata
-import nltk
 from plotly import graph_objs as go
 import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
