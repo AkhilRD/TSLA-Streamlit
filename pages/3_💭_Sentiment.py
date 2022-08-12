@@ -5,10 +5,10 @@ from datetime import date
 from nltk.tokenize import sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
+nltk.download('stopwords')
 import unicodedata
 import nltk
 from plotly import graph_objs as go
-from wordcloud import WordCloud, STOPWORDS
 import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
