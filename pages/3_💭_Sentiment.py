@@ -8,12 +8,12 @@ from nltk.corpus import stopwords
 import unicodedata
 import nltk
 from plotly import graph_objs as go
+from wordcloud import WordCloud, STOPWORDS
 import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
 
-st.sidebar.title('Navigation')
 
 st.title("TSLA Price Prediction 🚗⚡🔋")
 st.subheader("Twitter Sentiment")
@@ -59,8 +59,7 @@ def final(lem_col):
     return (" ".join(lem_col))
 
 tesla['text'] = tesla.apply(lambda x: final(x['text']),axis=1)
-# st.write('Processed Tweets')
-# tesla['text']
+
 
 
 #converting text to sentiment scores
@@ -76,7 +75,7 @@ tesla = tesla[(tesla[['sentiment_score']] != 0).all(axis=1)]
 # st.write('Polarity scores (-/+)')
 # tesla['sentiment_score']
 
-sent_score = tesla.groupby('Date')['sentiment_score'].mean().reset_index()
+sent_score = tesla.groupby(tesla['Date'].dt.date)['sentiment_score'].mean().reset_index()
 
 def tsla_sentiment():
     fig = go.Figure()

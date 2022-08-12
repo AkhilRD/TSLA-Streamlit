@@ -12,7 +12,6 @@ st.set_page_config(
 )
 
 #sidebar and title
-st.sidebar.title('Navigation')
 st.title("TSLA Price Prediction 🚗⚡🔋")
 
 #Assigning start dates
@@ -32,9 +31,12 @@ def load_data(ticker):
 
 price = load_data(stocks)
 
-
 st.write('Ticker Data')
 st.write(price.tail())
+
+#describing the data
+if st.checkbox('Data Description'):
+    st.write(price.describe())
 
 #plotting the open and close of TSLA 
 def plot_tsla():
@@ -47,9 +49,6 @@ def plot_tsla():
 
 plot_tsla()
 
-#describing the data
-if st.checkbox('Data Description'):
-    st.write(price.describe())
 
 def tsla_ma30():
     fig = go.Figure()
@@ -61,3 +60,41 @@ def tsla_ma30():
     st.plotly_chart(fig)
 
 tsla_ma30() 
+
+df = pd.read_csv('https://raw.githubusercontent.com/AkhilRD/Foundational_Project/pre-mid-eval/TSLARATIOS.csv')
+df['Date'] = df['Date'].astype('datetime64[ns]')
+df = df.sort_values('Date',ascending=True)
+
+
+
+def tesla_metrics():
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Gross Margin'],name = 'TSLA Gross Margin'))
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Operating Margin'],name = 'TSLA Operating Margin'))
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Net Profit Margin'],name = 'TSLA Net Profit Margin'))
+    fig.layout.update(title_text = 'TSLA Profit Margins',xaxis_rangeslider_visible=True)
+
+    st.plotly_chart(fig)
+
+tesla_metrics()
+
+def tesla_debt():
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Long-term Debt / Capital'],name = 'TSLA Long term debt to capital'))
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Debt/Equity Ratio'],name = 'TSLA Debt to Equity'))
+    fig.layout.update(title_text = 'TSLA Debt Ratios',xaxis_rangeslider_visible=True)
+
+    st.plotly_chart(fig)
+
+tesla_debt()
+
+def tesla_equity():
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['ROE - Return On Equity'],name = 'TSLA Return on Equity'))
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['ROA - Return On Assets'],name = 'TSLA Return on Assets '))
+    fig.add_trace(go.Scatter(x = df['Date'],y = df['Debt/Equity Ratio'],name = 'TSLA Return On Investment'))
+    fig.layout.update(title_text = 'TSLA Return Ratios',xaxis_rangeslider_visible=True)
+
+    st.plotly_chart(fig)
+
+tesla_equity()
