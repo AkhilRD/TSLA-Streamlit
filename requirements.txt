@@ -8,6 +8,5 @@ streamlit==1.11.1
 vaderSentiment==3.3.2
 wordcloud==1.8.2.2
 yfinance==0.1.74
-nltk.download('stopwords')
 
 
