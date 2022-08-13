@@ -8,6 +8,10 @@ from datetime import date
 import pickle
 from sklearn.metrics import mean_squared_error
 from plotly import graph_objs as go
+from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.stattools import adfuller
+from pmdarima import auto_arima 
+from statsmodels.tsa.arima_model import ARIMA,ARIMAResults
 
 
 START = '2020-06-26'
@@ -75,5 +79,22 @@ def plot_ts():
 
 plot_ts()
 
+pred_y= VR_predict["Predicted"]
+train_y= price["Close"]
+combined = pd.concat([train_y, pred_y])
+combined= pd.DataFrame(combined, columns =['Close'])
+combined.head()
+
+st.subheader('ARIMA Model Forecasts')
+# st.write(auto_arima(combined['Close']).summary())
+
+#Building Arima Model
+arima_model = ARIMA(combined['Close'],order=(0,1,0))
+model = arima_model.fit()
+st.write(model.summary())
+
+#Forecasting for 30 days in the future
+forecast = model.predict(len(combined),len(combined)+30,typ='levels').rename('Forecast')
+st.write(forecast)
 
 
