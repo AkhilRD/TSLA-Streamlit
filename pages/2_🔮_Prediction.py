@@ -48,8 +48,8 @@ st.write(error)
 #Voting Regressor
 st.subheader('Voting Regressor')
 st.write('Used Voting regressor to ensemble, hyper-tuned random forest, decision tree, cat boost model and K-fold cross validation for validation.')
-with open('modelv2.pkl', 'rb') as f:
-    loaded_regressor = pickle.load(f)
+loaded_regressor = pickle.load(open('modelv2.pkl','rb'))
+
 
 y_pred = loaded_regressor.predict(x_test)
 error = math.sqrt(mean_squared_error(y_true,y_pred))
