@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error
 from plotly import graph_objs as go
 from statsmodels.tsa.stattools import adfuller
 from pmdarima import auto_arima 
-from statsmodels.tsa.arima_model import ARIMA,ARIMAResults
+from statsmodels.tsa.arima_model import ARIMA
 
 
 START = '2020-06-26'
