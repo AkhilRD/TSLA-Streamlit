@@ -8,7 +8,6 @@ streamlit==1.11.1
 vaderSentiment==3.3.2
 yfinance==0.1.74
 pickle5
-statsmodels
-pmdarima
+statsmodels==0.12.2
+pmdarima==1.8.5
 catboost
-statsmodels.tsa.arima_model
