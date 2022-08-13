@@ -9,3 +9,4 @@ vaderSentiment==3.3.2
 yfinance==0.1.74
 pickle5
 statsmodels
+catboost
