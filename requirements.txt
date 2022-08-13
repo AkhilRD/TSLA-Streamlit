@@ -11,3 +11,4 @@ pickle5
 statsmodels
 pmdarima
 catboost
+statsmodels.tsa.arima_model
