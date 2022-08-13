@@ -1,5 +1,6 @@
 from curses import erasechar
 import streamlit as st
+import yfinance as yf
 import pandas as pd
 from plotly import graph_objs as go
 import math
