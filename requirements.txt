@@ -8,4 +8,4 @@ streamlit==1.11.1
 vaderSentiment==3.3.2
 yfinance==0.1.74
 pickle5
-
+statsmodels
